@@ -1,0 +1,327 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="IdentityModel" Version="3.10.10" />
+    <PackageReference Include="IdentityServer4" Version="2.4.0" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.4.0" />
+    <PackageReference Include="IdentityServer4.EntityFramework" Version="2.4.0" />
+    <PackageReference Include="Stripe.net" Version="27.3.1" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="AccountViewModels\ExternalLoginConfirmationViewModel.cs">
+      <LastGenOutput>ExternalLoginConfirmationViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\ExternalProvider.cs">
+      <LastGenOutput>ExternalProvider.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\ForgotPasswordViewModel.cs">
+      <LastGenOutput>ForgotPasswordViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LoggedOutViewModel.cs">
+      <LastGenOutput>LoggedOutViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LoginInputModel.cs">
+      <LastGenOutput>LoginInputModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LoginViewModel.cs">
+      <LastGenOutput>LoginViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LoginWith2faViewModel.cs">
+      <LastGenOutput>LoginWith2faViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LoginWithRecoveryCodeViewModel.cs">
+      <LastGenOutput>LoginWithRecoveryCodeViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LogoutInputModel.cs">
+      <LastGenOutput>LogoutInputModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\LogoutViewModel.cs">
+      <LastGenOutput>LogoutViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\RegisterViewModel.cs">
+      <LastGenOutput>RegisterViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\ResetPasswordViewModel.cs">
+      <LastGenOutput>ResetPasswordViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\SendCodeViewModel.cs">
+      <LastGenOutput>SendCodeViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="AccountViewModels\VerifyCodeViewModel.cs">
+      <LastGenOutput>VerifyCodeViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ApplicationRole.cs">
+      <LastGenOutput>ApplicationRole.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ApplicationUser.cs">
+      <LastGenOutput>ApplicationUser.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ConsentInputModel.cs">
+      <LastGenOutput>ConsentInputModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ConsentViewModel.cs">
+      <LastGenOutput>ConsentViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="DiagnosticsViewModel.cs">
+      <LastGenOutput>DiagnosticsViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="EmailSettings.cs">
+      <LastGenOutput>EmailSettings.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ErrorViewModel.cs">
+      <LastGenOutput>ErrorViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="GrantsViewModel.cs">
+      <LastGenOutput>GrantsViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="IAuditable.cs">
+      <Generator></Generator>
+    </Compile>
+    <Compile Update="IEntityBase.cs">
+      <Generator></Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\ChangePasswordViewModel.cs">
+      <LastGenOutput>ChangePasswordViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\DeletePersonalDataViewModel.cs">
+      <LastGenOutput>DeletePersonalDataViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\EnableAuthenticatorViewModel.cs">
+      <LastGenOutput>EnableAuthenticatorViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\ExternalLoginsViewModel.cs">
+      <LastGenOutput>ExternalLoginsViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\IndexViewModel.cs">
+      <LastGenOutput>IndexViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\RemoveLoginViewModel.cs">
+      <LastGenOutput>RemoveLoginViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\SetPasswordViewModel.cs">
+      <LastGenOutput>SetPasswordViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\ShowRecoveryCodesViewModel.cs">
+      <LastGenOutput>ShowRecoveryCodesViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="ManageViewModels\TwoFactorAuthenticationViewModel.cs">
+      <LastGenOutput>TwoFactorAuthenticationViewModel.cs.d.ts</LastGenOutput>
+      <Generator>DtsGenerator</Generator>
+    </Compile>
+    <Compile Update="StsConfig.cs">
+      <Generator></Generator>
+    </Compile>
+    <Compile Update="Subscriber.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>Subscriber.cs.d.ts</LastGenOutput>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AccountViewModels\ExternalLoginConfirmationViewModel.cs.d.ts">
+      <DependentUpon>ExternalLoginConfirmationViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\ExternalProvider.cs.d.ts">
+      <DependentUpon>ExternalProvider.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\ForgotPasswordViewModel.cs.d.ts">
+      <DependentUpon>ForgotPasswordViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LoggedOutViewModel.cs.d.ts">
+      <DependentUpon>LoggedOutViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LoginInputModel.cs.d.ts">
+      <DependentUpon>LoginInputModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LoginViewModel.cs.d.ts">
+      <DependentUpon>LoginViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LoginWith2faViewModel.cs.d.ts">
+      <DependentUpon>LoginWith2faViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LoginWithRecoveryCodeViewModel.cs.d.ts">
+      <DependentUpon>LoginWithRecoveryCodeViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LogoutInputModel.cs.d.ts">
+      <DependentUpon>LogoutInputModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\LogoutViewModel.cs.d.ts">
+      <DependentUpon>LogoutViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\RegisterViewModel.cs.d.ts">
+      <DependentUpon>RegisterViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\ResetPasswordViewModel.cs.d.ts">
+      <DependentUpon>ResetPasswordViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\SendCodeViewModel.cs.d.ts">
+      <DependentUpon>SendCodeViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="AccountViewModels\VerifyCodeViewModel.cs.d.ts">
+      <DependentUpon>VerifyCodeViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ApplicationRole.cs.d.ts">
+      <DependentUpon>ApplicationRole.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ApplicationUser.cs.d.ts">
+      <DependentUpon>ApplicationUser.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ConsentInputModel.cs.d.ts">
+      <DependentUpon>ConsentInputModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ConsentViewModel.cs.d.ts">
+      <DependentUpon>ConsentViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="DiagnosticsViewModel.cs.d.ts">
+      <DependentUpon>DiagnosticsViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="EmailSettings.cs.d.ts">
+      <DependentUpon>EmailSettings.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ErrorViewModel.cs.d.ts">
+      <DependentUpon>ErrorViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="GrantsViewModel.cs.d.ts">
+      <DependentUpon>GrantsViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\ChangePasswordViewModel.cs.d.ts">
+      <DependentUpon>ChangePasswordViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\DeletePersonalDataViewModel.cs.d.ts">
+      <DependentUpon>DeletePersonalDataViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\EnableAuthenticatorViewModel.cs.d.ts">
+      <DependentUpon>EnableAuthenticatorViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\ExternalLoginsViewModel.cs.d.ts">
+      <DependentUpon>ExternalLoginsViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\IndexViewModel.cs.d.ts">
+      <DependentUpon>IndexViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\RemoveLoginViewModel.cs.d.ts">
+      <DependentUpon>RemoveLoginViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\SetPasswordViewModel.cs.d.ts">
+      <DependentUpon>SetPasswordViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\ShowRecoveryCodesViewModel.cs.d.ts">
+      <DependentUpon>ShowRecoveryCodesViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="ManageViewModels\TwoFactorAuthenticationViewModel.cs.d.ts">
+      <DependentUpon>TwoFactorAuthenticationViewModel.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </None>
+    <None Update="Subscriber.cs.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Subscriber.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+</Project>
