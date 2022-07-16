@@ -11,21 +11,21 @@ namespace ZoEazy.Api.Model
         public bool IsEnabled { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; }
-        [StringLength(250)]
-        public string FirstName { get; set; }
-        [StringLength(250)]
-        public string LastName { get; set; }
+        //[StringLength(250)]
+        //public string FirstName { get; set; }
+        //[StringLength(250)]
+        //public string LastName { get; set; }
         [Phone]
         public string Mobile { get; set; }
 
-        [NotMapped]
-        public string Name
-        {
-            get
-            {
-                return this.FirstName + " " + this.LastName;
-            }
-        }
+        //[NotMapped]
+        //public string Name
+        //{
+        //    get
+        //    {
+        //        return this.FirstName + " " + this.LastName;
+        //    }
+        //}
         public bool IsAdmin { get; set; }
         public string DataEventRecordsRole { get; set; }
         public string SecuredFilesRole { get; set; }

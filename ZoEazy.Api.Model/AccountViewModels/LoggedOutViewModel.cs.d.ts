@@ -1,11 +1,55 @@
-declare module server {
 	interface loggedOutViewModel {
-		postLogoutRedirectUri: string;
+		postLogoutRedirectUri: {
+			absolutePath: string;
+			absoluteUri: string;
+			authority: string;
+			dnsSafeHost: string;
+			fragment: string;
+			host: string;
+			hostNameType: any;
+			idnHost: string;
+			isAbsoluteUri: boolean;
+			isDefaultPort: boolean;
+			isFile: boolean;
+			isLoopback: boolean;
+			isUnc: boolean;
+			localPath: string;
+			originalString: string;
+			pathAndQuery: string;
+			port: number;
+			query: string;
+			scheme: string;
+			segments: string[];
+			userEscaped: boolean;
+			userInfo: string;
+		};
 		clientName: string;
-		signOutIframeUrl: string;
+		signOutIframeUrl: {
+			absolutePath: string;
+			absoluteUri: string;
+			authority: string;
+			dnsSafeHost: string;
+			fragment: string;
+			host: string;
+			hostNameType: any;
+			idnHost: string;
+			isAbsoluteUri: boolean;
+			isDefaultPort: boolean;
+			isFile: boolean;
+			isLoopback: boolean;
+			isUnc: boolean;
+			localPath: string;
+			originalString: string;
+			pathAndQuery: string;
+			port: number;
+			query: string;
+			scheme: string;
+			segments: string[];
+			userEscaped: boolean;
+			userInfo: string;
+		};
 		automaticRedirectAfterSignOut: boolean;
 		logoutId: string;
 		triggerExternalSignout: boolean;
 		externalAuthenticationScheme: string;
 	}
-}

@@ -21,9 +21,9 @@ namespace ZoEazy.Api.Model
         
         [Required]
 
-        public int Country_Id { get; set; }
+        public int CountryId { get; set; }
 
-        [JsonIgnore][ForeignKey("Country_Id")]
+        [JsonIgnore][ForeignKey("CountryId")]
         
         public virtual Country Country { get; set; }
 

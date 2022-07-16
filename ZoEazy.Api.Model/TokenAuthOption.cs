@@ -28,9 +28,11 @@ namespace ZoEazy.Api.Model
         public TokenAuthOption()
         {
             Cert = GetCertificateFromStore("CN=localhost");
-            Key = new X509SecurityKey(new X509Certificate2(Cert));
-            SigningCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256Signature);
-
+            using (var xCert = new X509Certificate2(Cert))
+            {
+                Key = new X509SecurityKey(xCert);
+                SigningCredentials = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256Signature);
+            }
         }
         private static X509Certificate2 GetCertificateFromStore(string certName)
         {

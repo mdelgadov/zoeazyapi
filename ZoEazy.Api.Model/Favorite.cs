@@ -5,24 +5,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    public class Favorite : IDish
+    public class Favorite : Delete, IDish
     {
-
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
+    
         public string Description { get; set; }
 
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "This is apparently the right data type, a byte array for an image")]
         public byte[] Image { get; set; }
         public string ImageSource { get; set; }
         public float Sequence { get; set; }
-        public List<FavoritePresentation> FavoritePresentation { get; set; }
+        public IEnumerable<FavoritePresentation> FavoritePresentation { get;  }
 
         [Required]
-        public string Customer_Id { get; set; }
+        public string CustomerId { get; set; }
 
-        [JsonIgnore][ForeignKey("Customer_Id")]
-        public virtual Customer Customer { get; set; }
+        [JsonIgnore]
+        [ForeignKey("CustomerId")]
+        public Customer Customer { get; set; }
     }
 }

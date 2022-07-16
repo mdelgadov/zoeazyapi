@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ZoEazy.Api.Model.AccountViewModels
 {
@@ -8,7 +9,7 @@ namespace ZoEazy.Api.Model.AccountViewModels
         public string Provider { get; set; }
         [Required(ErrorMessage = "CODE_REQUIRED")]
         public string Code { get; set; }
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
         public bool RememberBrowser { get; set; }
         public bool RememberMe { get; set; }
     }
@@ -20,7 +21,7 @@ namespace ZoEazy.Api.Model.AccountViewModels
         [Required]
         public string Code { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
 
         [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }

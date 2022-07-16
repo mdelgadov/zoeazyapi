@@ -1,10 +1,12 @@
-﻿namespace ZoEazy.Api.Model.AccountViewModels
+﻿using System;
+
+namespace ZoEazy.Api.Model.AccountViewModels
 {
     public class LoggedOutViewModel
     {
-        public string PostLogoutRedirectUri { get; set; }
+        public Uri PostLogoutRedirectUri { get; set; }
         public string ClientName { get; set; }
-        public string SignOutIframeUrl { get; set; }
+        public Uri SignOutIframeUrl { get; set; }
 
         public bool AutomaticRedirectAfterSignOut { get; set; }
 

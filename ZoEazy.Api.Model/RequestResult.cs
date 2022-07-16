@@ -1,4 +1,5 @@
 ﻿using System;
+using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Model
 {

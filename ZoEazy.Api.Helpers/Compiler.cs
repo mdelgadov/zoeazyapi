@@ -8,6 +8,7 @@ using ZoEazy.Api.Model;
 using System.IO;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Serialization;
+using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Helpers
 {

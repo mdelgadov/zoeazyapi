@@ -13,14 +13,16 @@ namespace ZoEazy.Api.Model
         public string Name { get; set; }
         public string Description { get; set; }
 
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "Images are byte arrays")]
         public byte[] Image { get; set; }
         public string ImageSource { get; set; }
         public float Sequence { get; set; }
 
-        public virtual List<OrderItemPresentation> Presentations { get; set; }
+        public IEnumerable<OrderItemPresentation> Presentations { get; set; }
         [Required]
-        public int Order_Id { get; set; }
-        [JsonIgnore][ForeignKey("Order_Id")]
+        public int OrderId { get; set; }
+        [JsonIgnore][ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
         public double Quantity { get; set; }
     }

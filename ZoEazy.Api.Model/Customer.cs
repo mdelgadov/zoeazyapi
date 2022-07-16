@@ -8,18 +8,18 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ZoEazy.Api.Model
 {
-    public class Customer : IdentityUser, IShortHuman
+    public class Customer : Delete, IHuman
     {
 
         [Required]
-        public string Name { get; set; }
+        public new HumanName Name { get; set; }
 
         public Gender Gender { get; set; }
 
-        public virtual List<CustomerPhone> Phones { get; set; }
-        public virtual List<CustomerAddress> Addresses { get; set; }
-        public virtual List<CustomerCreditCard> CreditCards { get; set; }
-        public virtual List<Favorite> Favorites { get; set; }
-        public virtual List<Order> Orders { get; set; }
+        public IEnumerable<CustomerPhone> Phones { get;  }
+        public IEnumerable<CustomerAddress> Addresses { get;  }
+        public IEnumerable<CustomerCreditCard> CreditCards { get;  }
+        public IEnumerable<Favorite> Favorites { get;  }
+        public IEnumerable<Order> Orders { get;  }
     }
 }

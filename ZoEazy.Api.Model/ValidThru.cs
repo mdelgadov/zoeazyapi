@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ZoEazy.Api.Model
 {
-    class ValidThru {
+    public class ValidThru
+    {
         public Month Month { get; set; }
 
         [Range(typeof(short), "2000", "2050")]
@@ -16,9 +17,21 @@ namespace ZoEazy.Api.Model
             Month = month;
             Year = year;
         }
-        public bool Valid() {
+        public bool Valid()
+        {
             var c = new DateTime(Year, (int)Month, DateTime.DaysInMonth(Year, (int)Month));
             return c.Year < 2051;
+        }
+        public bool Expired()
+        {
+            var n = DateTime.Now;
+            return Year < n.Year || Year == n.Year && (int)Month < n.Month || RecentlyExpired(n);
+        }
+
+        private bool RecentlyExpired(DateTime n)
+        {
+            var firstMoment = new DateTime(Year, (int)Month, DateTime.DaysInMonth(Year, (int)Month)).AddDays(1);
+            return (n - firstMoment).TotalMilliseconds > 0;
         }
     }
 }

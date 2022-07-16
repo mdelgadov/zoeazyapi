@@ -15,7 +15,7 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -216,7 +216,7 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .IsRequired()
                         .HasMaxLength(5);
 
-                    b.Property<int?>("State_Id");
+                    b.Property<int>("State_Id");
 
                     b.Property<string>("Street")
                         .IsRequired();
@@ -647,9 +647,6 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("Name")
-                        .IsRequired();
-
                     b.Property<string>("NormalizedEmail");
 
                     b.Property<string>("NormalizedUserName");
@@ -693,7 +690,7 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .IsRequired()
                         .HasMaxLength(5);
 
-                    b.Property<int?>("State_Id");
+                    b.Property<int>("State_Id");
 
                     b.Property<string>("Street")
                         .IsRequired();
@@ -738,10 +735,6 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                     b.Property<int?>("Status");
 
                     b.Property<string>("TokenId");
-
-                    b.Property<int>("ValidThruMonth");
-
-                    b.Property<int>("ValidThruYear");
 
                     b.HasKey("Id");
 
@@ -1027,7 +1020,7 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .IsRequired()
                         .HasMaxLength(5);
 
-                    b.Property<int?>("State_Id");
+                    b.Property<int>("State_Id");
 
                     b.Property<string>("Street")
                         .IsRequired();
@@ -1780,9 +1773,6 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(250);
-
                     b.Property<int>("Gender");
 
                     b.Property<byte[]>("Image");
@@ -1796,14 +1786,9 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                     b.Property<string>("L4DSSN")
                         .HasMaxLength(4);
 
-                    b.Property<string>("LastName")
-                        .HasMaxLength(250);
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("MiddleName");
 
                     b.Property<string>("Mobile");
 
@@ -1864,7 +1849,7 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .IsRequired()
                         .HasMaxLength(5);
 
-                    b.Property<int?>("State_Id");
+                    b.Property<int>("State_Id");
 
                     b.Property<string>("Street")
                         .IsRequired();
@@ -1914,10 +1899,6 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                     b.Property<Guid>("Subscriber_Id");
 
                     b.Property<string>("TokenId");
-
-                    b.Property<int>("ValidThruMonth");
-
-                    b.Property<int>("ValidThruYear");
 
                     b.HasKey("Id");
 
@@ -2102,7 +2083,8 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
 
                     b.HasOne("ZoEazy.Api.Model.State", "State")
                         .WithMany()
-                        .HasForeignKey("State_Id");
+                        .HasForeignKey("State_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ZoEazy.Api.Model.BranchFax", b =>
@@ -2242,6 +2224,29 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("ZoEazy.Api.Model.Customer", b =>
+                {
+                    b.OwnsOne("ZoEazy.Api.Model.HumanName", "Name", b1 =>
+                        {
+                            b1.Property<string>("CustomerId");
+
+                            b1.Property<string>("First");
+
+                            b1.Property<string>("Last");
+
+                            b1.Property<string>("Middle");
+
+                            b1.HasKey("CustomerId");
+
+                            b1.ToTable("Customers");
+
+                            b1.HasOne("ZoEazy.Api.Model.Customer")
+                                .WithOne("Name")
+                                .HasForeignKey("ZoEazy.Api.Model.HumanName", "CustomerId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+                });
+
             modelBuilder.Entity("ZoEazy.Api.Model.CustomerAddress", b =>
                 {
                     b.HasOne("ZoEazy.Api.Model.Customer", "Customer")
@@ -2251,7 +2256,8 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
 
                     b.HasOne("ZoEazy.Api.Model.State", "State")
                         .WithMany()
-                        .HasForeignKey("State_Id");
+                        .HasForeignKey("State_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ZoEazy.Api.Model.CustomerCreditCard", b =>
@@ -2265,6 +2271,26 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .WithMany("CreditCards")
                         .HasForeignKey("Customer_Id")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.OwnsOne("ZoEazy.Api.Model.ValidThru", "ValidThru", b1 =>
+                        {
+                            b1.Property<int>("CustomerCreditCardId")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<int>("Month");
+
+                            b1.Property<short>("Year");
+
+                            b1.HasKey("CustomerCreditCardId");
+
+                            b1.ToTable("CustomerCreditCards");
+
+                            b1.HasOne("ZoEazy.Api.Model.CustomerCreditCard")
+                                .WithOne("ValidThru")
+                                .HasForeignKey("ZoEazy.Api.Model.ValidThru", "CustomerCreditCardId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 
             modelBuilder.Entity("ZoEazy.Api.Model.CustomerPhone", b =>
@@ -2352,7 +2378,8 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
 
                     b.HasOne("ZoEazy.Api.Model.State", "State")
                         .WithMany()
-                        .HasForeignKey("State_Id");
+                        .HasForeignKey("State_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ZoEazy.Api.Model.FranchiseFax", b =>
@@ -2571,6 +2598,26 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
 
             modelBuilder.Entity("ZoEazy.Api.Model.Subscriber", b =>
                 {
+                    b.OwnsOne("ZoEazy.Api.Model.Date", "DateOfBirth", b1 =>
+                        {
+                            b1.Property<Guid>("SubscriberId");
+
+                            b1.Property<int>("Day");
+
+                            b1.Property<int>("Month");
+
+                            b1.Property<int>("Year");
+
+                            b1.HasKey("SubscriberId");
+
+                            b1.ToTable("AspNetUsers");
+
+                            b1.HasOne("ZoEazy.Api.Model.Subscriber")
+                                .WithOne("DateOfBirth")
+                                .HasForeignKey("ZoEazy.Api.Model.Date", "SubscriberId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
+
                     b.OwnsOne("ZoEazy.Api.Model.Flag", "Suspended", b1 =>
                         {
                             b1.Property<Guid>("SubscriberId");
@@ -2589,23 +2636,23 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                                 .OnDelete(DeleteBehavior.Cascade);
                         });
 
-                    b.OwnsOne("ZoEazy.Api.Model.ZeDate", "DateOfBirth", b1 =>
+                    b.OwnsOne("ZoEazy.Api.Model.HumanName", "Name", b1 =>
                         {
                             b1.Property<Guid>("SubscriberId");
 
-                            b1.Property<int>("Day");
+                            b1.Property<string>("First");
 
-                            b1.Property<int>("Month");
+                            b1.Property<string>("Last");
 
-                            b1.Property<int>("Year");
+                            b1.Property<string>("Middle");
 
                             b1.HasKey("SubscriberId");
 
                             b1.ToTable("AspNetUsers");
 
                             b1.HasOne("ZoEazy.Api.Model.Subscriber")
-                                .WithOne("DateOfBirth")
-                                .HasForeignKey("ZoEazy.Api.Model.ZeDate", "SubscriberId")
+                                .WithOne("Name")
+                                .HasForeignKey("ZoEazy.Api.Model.HumanName", "SubscriberId")
                                 .OnDelete(DeleteBehavior.Cascade);
                         });
                 });
@@ -2614,7 +2661,8 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                 {
                     b.HasOne("ZoEazy.Api.Model.State", "State")
                         .WithMany()
-                        .HasForeignKey("State_Id");
+                        .HasForeignKey("State_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ZoEazy.Api.Model.Subscriber", "Subscriber")
                         .WithOne("Address")
@@ -2633,6 +2681,26 @@ namespace ZoEazy.Api.Data.Migrations.ZoEazy
                         .WithMany("CreditCards")
                         .HasForeignKey("Subscriber_Id")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.OwnsOne("ZoEazy.Api.Model.ValidThru", "ValidThru", b1 =>
+                        {
+                            b1.Property<int>("SubscriberCreditCardId")
+                                .ValueGeneratedOnAdd()
+                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                            b1.Property<int>("Month");
+
+                            b1.Property<short>("Year");
+
+                            b1.HasKey("SubscriberCreditCardId");
+
+                            b1.ToTable("SubscriberCreditCards");
+
+                            b1.HasOne("ZoEazy.Api.Model.SubscriberCreditCard")
+                                .WithOne("ValidThru")
+                                .HasForeignKey("ZoEazy.Api.Model.ValidThru", "SubscriberCreditCardId")
+                                .OnDelete(DeleteBehavior.Cascade);
+                        });
                 });
 
             modelBuilder.Entity("ZoEazy.Api.Model.SubscriberFax", b =>

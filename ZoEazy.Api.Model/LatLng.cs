@@ -16,13 +16,16 @@ namespace ZoEazy.Api.Model
             // Latitude = 0;
             // Longitude = 0;
             // the (somewhat arbitrary) center of the USA, somewhere in the middle of kansas
-            
+
             Latitude = 41.120235;
             Longitude = -100.314082;
         }
         public LatLng(double lat, double lng)
         {
-            if (Invalid()) throw new System.ArgumentException("Invalid LatLng, valid lats between +-90, valid longs between +- 180 ");
+            if (Invalid())
+            {
+                throw new System.ArgumentException(Properties.Resources.InvalidLatLng);
+            }
             Latitude = lat;
             Longitude = lng;
         }

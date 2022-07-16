@@ -9,9 +9,11 @@ namespace ZoEazy.Api.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "Image is a byte array")]
         public byte[] Image { get; set; }
         public string ImageSource { get; set; }
-        public virtual List<Offer> Offers { get; set; }
+        public IEnumerable<Offer> Offers { get;  }
 
         //public virtual LocalBranch LocalBranch { get; set; }
     }

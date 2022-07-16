@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace ZoEazy.Api.Model.AccountViewModels
 {
@@ -7,9 +8,9 @@ namespace ZoEazy.Api.Model.AccountViewModels
     {
         public string SelectedProvider { get; set; }
 
-        public ICollection<SelectListItem> Providers { get; set; }
+        public ICollection<SelectListItem> Providers { get;  }
 
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
 
         public bool RememberMe { get; set; }
     }

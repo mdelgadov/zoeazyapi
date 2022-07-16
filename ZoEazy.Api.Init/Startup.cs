@@ -22,7 +22,8 @@ using Microsoft.Extensions.Options;
 using ZoEazy.Api.Data;
 using ZoEazy.Api.Data.Services;
 using ZoEazy.Api.Data.Extensions;
-
+using ZoEazy.Api.Model.Subscriber;
+using NetTopologySuite;
 namespace ZoEazy.Api.Init
 {
     public class Startup
@@ -92,7 +93,7 @@ namespace ZoEazy.Api.Init
 
             services.AddDbContextPool<ZoeazyDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseSqlServer(connectionString, x => x.UseNetTopologySuite());
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationsAssembly));
             });
             services.AddIdentity<Subscriber, ApplicationRole>()

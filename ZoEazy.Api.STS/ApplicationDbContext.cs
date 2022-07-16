@@ -51,7 +51,7 @@ namespace ZoEazy.Api.STS
         /// <returns></returns>
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
-            this.AuditEntities();
+            AuditEntities();
 
             return await base.SaveChangesAsync(cancellationToken);
         }
@@ -63,7 +63,7 @@ namespace ZoEazy.Api.STS
         private void AuditEntities()
         {
 
-            DateTime now = DateTime.Now;
+            var now = DateTime.Now;
 
             // For every changed entity marked as IAditable set the values for the audit properties
             foreach (EntityEntry<IAuditable> entry in ChangeTracker.Entries<IAuditable>())

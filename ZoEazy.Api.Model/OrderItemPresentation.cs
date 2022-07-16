@@ -9,8 +9,8 @@ namespace ZoEazy.Api.Model
         public int Id { get; set; }
         public string Size { get; set; }
 
-        public int OrderItem_Id { get; set; }
-        [JsonIgnore][ForeignKey("OrderItem_Id")]
+        public int OrderItemId { get; set; }
+        [JsonIgnore][ForeignKey("OrderItemId")]
         public virtual OrderItem OrderItem { get; set; }
         [Required]
         public decimal Price { get; set; }

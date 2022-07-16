@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,8 @@ namespace ZoEazy.Api.Model.StripeEntities
         /// <returns></returns>
         public static bool HasPaymentInfo(this IStripePersistentEntity user)
         {
+            Contract.Requires(user != null);
+
             return !string.IsNullOrEmpty(user.PaymentSystemId);
         }
     }

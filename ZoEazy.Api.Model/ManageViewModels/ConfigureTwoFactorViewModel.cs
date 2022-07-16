@@ -10,6 +10,6 @@ namespace ZoEazy.Api.Model.ManageViewModels
     {
         public string SelectedProvider { get; set; }
 
-        public ICollection<SelectListItem> Providers { get; set; }
+        public ICollection<SelectListItem> Providers { get;  }
     }
 }

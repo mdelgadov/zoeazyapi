@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics.Contracts;
+
 namespace ZoEazy.Api.Model.StripeEntities
 {
     /// <summary>
@@ -34,7 +36,9 @@ namespace ZoEazy.Api.Model.StripeEntities
         /// <param name="plan"></param>
         public static void GeneratePaymentSystemId(this IPlanEntity plan)
         {
-            plan.PaymentSystemId = Guid.NewGuid().ToString("N");
+            Contract.Requires(plan != null);
+
+            plan.PaymentSystemId = Guid.NewGuid().ToString("N", System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }

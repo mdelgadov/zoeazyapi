@@ -1,8 +1,53 @@
-declare module server {
 	interface consentViewModel extends consentInputModel {
 		clientName: string;
-		clientUrl: string;
-		clientLogoUrl: string;
+		clientUrl: {
+			absolutePath: string;
+			absoluteUri: string;
+			authority: string;
+			dnsSafeHost: string;
+			fragment: string;
+			host: string;
+			hostNameType: any;
+			idnHost: string;
+			isAbsoluteUri: boolean;
+			isDefaultPort: boolean;
+			isFile: boolean;
+			isLoopback: boolean;
+			isUnc: boolean;
+			localPath: string;
+			originalString: string;
+			pathAndQuery: string;
+			port: number;
+			query: string;
+			scheme: string;
+			segments: string[];
+			userEscaped: boolean;
+			userInfo: string;
+		};
+		clientLogoUrl: {
+			absolutePath: string;
+			absoluteUri: string;
+			authority: string;
+			dnsSafeHost: string;
+			fragment: string;
+			host: string;
+			hostNameType: any;
+			idnHost: string;
+			isAbsoluteUri: boolean;
+			isDefaultPort: boolean;
+			isFile: boolean;
+			isLoopback: boolean;
+			isUnc: boolean;
+			localPath: string;
+			originalString: string;
+			pathAndQuery: string;
+			port: number;
+			query: string;
+			scheme: string;
+			segments: string[];
+			userEscaped: boolean;
+			userInfo: string;
+		};
 		allowRememberConsent: boolean;
 		identityScopes: server.scopeViewModel[];
 		resourceScopes: server.scopeViewModel[];
@@ -15,4 +60,3 @@ declare module server {
 		required: boolean;
 		checked: boolean;
 	}
-}

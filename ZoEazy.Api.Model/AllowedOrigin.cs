@@ -15,10 +15,10 @@ namespace ZoEazy.Api.Model
         public int Id { get; set; }
         
         [Required]
-        public int Customer_Id { get; set; }
+        public int CustomerId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("Customer_Id")]
+        [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
 
         [MaxLength(100)]

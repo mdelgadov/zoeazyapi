@@ -3,42 +3,41 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Model
 {
-    public class Currency
+    public class Currency: Delete
     {
         public Currency()
         {
-            //Id = (int)ConfigDefaults.Currency_Id;
             Code = "USD";
             Name = "US Dollar";
-            Short = "Dollar";
+            ShortName = "Dollar";
             Symbol = "$";
         }
 
-        public Currency(string code, string name, string @short, string symbol)
+        public Currency(string code, string name, string shortName, string symbol)
         {
-            //Id = id;
             Code = code;
             Name = name;
-            Short = @short;
+            ShortName = shortName;
             Symbol = symbol;
         }
 
         [Key]
-        public int Id { get; set; }
         public string Code { get; set; }
-        public string Name { get; set; }
-        public string Short { get; set; }
+        public string ShortName { get; set; }
         public string Symbol { get; set; }
         public Currency FromCode(string code) {
             if (code == Code) {
                 return this;
             }
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
             throw new Exception("Invalid Currency");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
         }
         [JsonIgnore]
-        public virtual List<Plan> Plans { get; set; }
+        public IEnumerable<Plan> Plans { get;  }
     }
 }

@@ -12,6 +12,7 @@ using Order = ZoEazy.Api.Model.Order;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Data
 {
@@ -21,61 +22,69 @@ namespace ZoEazy.Api.Data
     public class Repository : IRepository
     {
         private const string ZoEazyDescription = "ZoEazy Services";
-        private readonly UserManager<Subscriber> _userManager;
-        private readonly ZoeazyDbContext _contextProvider; // = new ZoeazyDbContext();
+        private readonly UserManager<Model.Subscriber.Subscriber> _userManager;
+        private readonly ZoeazyDbContext _zoeContextProvider; // = new ZoeazyDbContext();
+        private readonly ZoeazyDbContext _subscriberContextProvider; // = new ZoeazyDbContext();
+        private readonly FranchiseDbContext _franchiseContextProvider; // = new ZoeazyDbContext();
+        private readonly BranchDbContext _branchContextProvider; // = new ZoeazyDbContext();
         private readonly ILogger _logger;
      
-        public IQueryable<Subscriber> Subscribers;
+        public IQueryable<Model.Subscriber.Subscriber> Subscribers;
         // private readonly CloudStorageAccount _storageAccount =
         //    CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["StorageConnectionString"].ToString());
 
-        public Repository(ZoeazyDbContext context, UserManager<Subscriber> userManager, ILoggerFactory loggerFactory)
+        public Repository(ZoeazyDbContext zoeContext, FranchiseDbContext franContext, BranchDbContext branContext,
+            UserManager<Model.Subscriber.Subscriber> userManager, ILoggerFactory loggerFactory)
         {
-            _contextProvider = context;
+            _zoeContextProvider = zoeContext;
+            
+            _franchiseContextProvider = franContext;
+            _branchContextProvider = branContext;
+
             _userManager = userManager;
             _logger = loggerFactory.CreateLogger<Repository>();
         }
-        public IQueryable<Subscriber> Users { get { return _contextProvider.Users; } }
+        public IQueryable<Model.Subscriber.Subscriber> Users { get { return _zoeContextProvider.Users; } }
         public IQueryable<Branch> Branches
         {
-            get { return _contextProvider.Branches; }
+            get { return Branches; }
         }
         public IQueryable<Country> Countries
         {
-            get { return _contextProvider.Countries; }
+            get { return _zoeContextProvider.Countries; }
         }
 
         public IQueryable<State> States
         {
-            get { return _contextProvider.States; }
+            get { return _zoeContextProvider.States; }
         }
 
-        public IQueryable<Franchise> Franchises
+        public IQueryable<Model.Franchise.Franchise> Franchises
         {
-            get { return _contextProvider.Franchises; }
+            get { return _franchiseContextProvider.Franchises; }
         }
 
         public IQueryable<Cuisine> Cuisines
         {
-            get { return _contextProvider.Cuisines; }
+            get { return _zoeContextProvider.Cuisines; }
         }
 
         public IQueryable<CreditCardBrand> CreditCardBrands
         {
-            get { return _contextProvider.CreditCardBrands; }
+            get { return _zoeContextProvider.CreditCardBrands; }
         }
 
-        public IQueryable<Contract> Contracts
+        public IQueryable<Model.Branch.Contract.Contract> Contracts
         {
-            get { return _contextProvider.Contracts; }
+            get { return _branchContextProvider.Contracts; }
         }
 
-        public IQueryable<ContractPeriod> ContractPeriods
+        public IQueryable<Model.Branch.Contract.Period> Periods
         {
-            get { return _contextProvider.ContractPeriods; }
+            get { return _branchContextProvider.Periods; }
         }
         public IQueryable<ZipCode> ZipCodes {
-            get { return _contextProvider.ZipCodes; }
+            get { return _zoeContextProvider.ZipCodes; }
         }
         public async Task<ZipCode> ZipCodeById(string code) {
             if (Int32.TryParse(code, out int zip))

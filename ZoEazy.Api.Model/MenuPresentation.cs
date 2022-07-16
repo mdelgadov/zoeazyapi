@@ -10,9 +10,9 @@ namespace ZoEazy.Api.Model
         public int Id { get; set; }
         public string Size { get; set; }
 
-        public int Menu_Id { get; set; }
+        public int MenuId { get; set; }
         [JsonIgnore]
-        [ForeignKey("Menu_Id")]
+        [ForeignKey("MenuId")]
         public virtual Menu Menu { get; set; }
 
         

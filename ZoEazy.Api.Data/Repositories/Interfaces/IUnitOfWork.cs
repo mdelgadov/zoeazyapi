@@ -1,4 +1,10 @@
-﻿
+﻿using ZoEazy.Api.Model;
+using ZoEazy.Api.Model.Extensions;
+using ZoEazy.Api.Model.Entities;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using Microsoft.Extensions.Logging;
+
 namespace ZoEazy.Api.Data.Repositories.Interfaces
 {
     public interface IUnitOfWork
@@ -10,3 +16,4 @@ namespace ZoEazy.Api.Data.Repositories.Interfaces
         int SaveChanges();
     }
 }
+

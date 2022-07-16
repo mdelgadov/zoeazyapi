@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using System.Linq;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -7,35 +8,37 @@ namespace ZoEazy.Api.Model
 {
     public class ConsentViewModel : ConsentInputModel
     {
-        public ConsentViewModel(ConsentInputModel model, string returnUrl, AuthorizationRequest request, Client client, IdentityServer4.Models.Resources resources)
+        public ConsentViewModel(ConsentInputModel model, Uri returnUrl, AuthorizationRequest request, Client client, IdentityServer4.Models.Resources resources)
         {
             RememberConsent = model?.RememberConsent ?? true;
             ScopesConsented = model?.ScopesConsented ?? Enumerable.Empty<string>();
 
             ReturnUrl = returnUrl;
-
+            if (client == null) return;
             ClientName = client.ClientName;
-            ClientUrl = client.ClientUri;
-            ClientLogoUrl = client.LogoUri;
+            ClientUrl = new Uri( client.ClientUri);
+            ClientLogoUrl = new Uri(client.LogoUri);
             AllowRememberConsent = client.AllowRememberConsent;
-
-            IdentityScopes = resources.IdentityResources.Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
-            ResourceScopes = resources.ApiResources.SelectMany(x=>x.Scopes).Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
-            if (resources.OfflineAccess)
+            if (resources != null)
             {
-                ResourceScopes = ResourceScopes.Union(new ScopeViewModel[] {
+                IdentityScopes = resources.IdentityResources.Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
+                ResourceScopes = resources.ApiResources.SelectMany(x => x.Scopes).Select(x => new ScopeViewModel(x, ScopesConsented.Contains(x.Name) || model == null)).ToArray();
+                if (resources.OfflineAccess)
+                {
+                    ResourceScopes = ResourceScopes.Union(new ScopeViewModel[] {
                     ScopeViewModel.GetOfflineAccess(ScopesConsented.Contains(IdentityServerConstants.StandardScopes.OfflineAccess) || model == null)
                 });
+                }
             }
         }
 
         public string ClientName { get; set; }
-        public string ClientUrl { get; set; }
-        public string ClientLogoUrl { get; set; }
+        public Uri ClientUrl { get; set; }
+        public Uri ClientLogoUrl { get; set; }
         public bool AllowRememberConsent { get; set; }
 
-        public IEnumerable<ScopeViewModel> IdentityScopes { get; set; }
-        public IEnumerable<ScopeViewModel> ResourceScopes { get; set; }
+        public IEnumerable<ScopeViewModel> IdentityScopes { get;  }
+        public IEnumerable<ScopeViewModel> ResourceScopes { get;  }
     }
 
     public class ScopeViewModel
@@ -58,22 +61,28 @@ namespace ZoEazy.Api.Model
 
         public ScopeViewModel(IdentityResource identity, bool check)
         {
-            Name = identity.Name;
-            DisplayName = identity.DisplayName;
-            Description = identity.Description;
-            Emphasize = identity.Emphasize;
-            Required = identity.Required;
-            Checked = check || identity.Required;
+            if (identity != null)
+            {
+                Name = identity.Name;
+                DisplayName = identity.DisplayName;
+                Description = identity.Description;
+                Emphasize = identity.Emphasize;
+                Required = identity.Required;
+                Checked = check || identity.Required;
+            }
         }
 
         public ScopeViewModel(Scope scope, bool check)
         {
-            Name = scope.Name;
-            DisplayName = scope.DisplayName;
-            Description = scope.Description;
-            Emphasize = scope.Emphasize;
-            Required = scope.Required;
-            Checked = check || scope.Required;
+            if (scope != null)
+            {
+                Name = scope.Name;
+                DisplayName = scope.DisplayName;
+                Description = scope.Description;
+                Emphasize = scope.Emphasize;
+                Required = scope.Required;
+                Checked = check || scope.Required;
+            }
         }
 
         public string Name { get; set; }

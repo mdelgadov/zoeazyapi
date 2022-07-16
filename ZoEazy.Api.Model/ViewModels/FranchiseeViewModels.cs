@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using ZoEazy.Api.Model.Branch;
+using ZoEazy.Api.Model.Subscriber;
 
 namespace ZoEazy.Api.Model.ViewModels
 {
@@ -12,10 +14,10 @@ namespace ZoEazy.Api.Model.ViewModels
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-
         public FranchiseViewModel Franchise { get; set; }
         public AddressViewModel Address { get; set; }
         public PhoneViewModel Phone { get; set; }
+        public HumanName Name { get; set; }
 
     }
     public class FranchiseViewModel
@@ -28,7 +30,7 @@ namespace ZoEazy.Api.Model.ViewModels
         public string Street { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
-        public int State_Id { get; set; }
+        public int StateId { get; set; }
     }
     public class PhoneViewModel
     {
@@ -40,9 +42,9 @@ namespace ZoEazy.Api.Model.ViewModels
     }
     public class BaseBranchViewModel
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
         [Required]
-        public int Branch_Id { get; set; }
+        public int BranchId { get; set; }
         public bool Deleted { get; set; }
     }
     public class BranchDetailViewModel
@@ -54,20 +56,20 @@ namespace ZoEazy.Api.Model.ViewModels
         public string Name { get; set; }
 
         // public CustomerType CustomerType { get; set; }
-        public int Franchise_Id { get; set; }
+        public int FranchiseId { get; set; }
 
         //public CuisineViewModel[] Cuisines { get; set; }
         public bool? Proposed { get; set; }
 
-        public BranchPhoneViewModel[] Phones { get; set; }
-        public BranchFaxViewModel[] Faxes { get; set; }
-        public BranchAddressViewModel[] Addresses { get; set; }
+        public IEnumerable<BranchPhoneViewModel> Phones { get;  }
+        public IEnumerable<BranchFaxViewModel> Faxes { get;  }
+        public IEnumerable<BranchAddressViewModel> Addresses { get;  }
         // public BranchPostalCodeViewModel[] PostalCodes { get; set; }
         ////--------------- iconfig
-        public WebsiteNameViewModel[] Websites { get; set; }
+        public IEnumerable<WebsiteNameViewModel> Websites { get;  }
 
         public double? Radius { get; set; }
-        public Lengths? Unit { get; set; }
+        public Length? Unit { get; set; }
         public double? Zoom { get; set; }
         //---------------- bank account
         [Required]
@@ -94,11 +96,11 @@ namespace ZoEazy.Api.Model.ViewModels
         public string Apartment { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
-        public int State_Id { get; set; }
+        public int StateId { get; set; }
         public string PostalCode { get; set; }
         public Int32 Latitude { get; set; }
         public Int32 Longitude { get; set; }
-        public GeoViewModel[] Geos { get; set; }
+        public IEnumerable<GeoViewModel> Geos { get;  }
     }
     public class GeoViewModel
     {
@@ -110,11 +112,11 @@ namespace ZoEazy.Api.Model.ViewModels
         [Required]
         public double Radius { get; set; }
         [Required]
-        public Lengths Unit { get; set; }
+        public Length Unit { get; set; }
         [Required]
         public DeliveryArea DeliveryArea { get; set; }
         [Required]
-        public List<PostalCode> PostalCodes { get; set; }
+        public IEnumerable<PostalCode> PostalCodes { get;  }
     }
     public class ScheduleViewModel
     {
@@ -122,14 +124,14 @@ namespace ZoEazy.Api.Model.ViewModels
         public int Id { get; set; }
 
         [Required]
-        public List<Schedule> Schedules { get; set; }
+        public IEnumerable<Schedule> Schedules { get;  }
     }
     public class OrderViewModel
     {
         [Required]
-        public SubscriberCreditCard CreditCard { get; set; }
+        public CreditCard CreditCard { get; set; }
         [Required]
-        public BranchOrder Order { get; set; }
+        public Order Order { get; set; }
     }
     public class WebsiteNameViewModel : BaseBranchViewModel
     {

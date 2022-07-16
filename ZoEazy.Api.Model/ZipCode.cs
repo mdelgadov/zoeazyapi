@@ -16,9 +16,9 @@ namespace ZoEazy.Api.Model
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int PopulationAt2001 { get; set; }
-        public int State_Id { get; set; }
+        public int StateId { get; set; }
         [JsonIgnore]
-        [ForeignKey("State_Id")]
+        [ForeignKey("StateId")]
         public virtual State State { get; set; }
         public double Area { get; set; }
         public int Sumblkpop { get; set; }

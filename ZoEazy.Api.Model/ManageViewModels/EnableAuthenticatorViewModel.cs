@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ZoEazy.Api.Model.ManageViewModels
@@ -15,7 +16,7 @@ namespace ZoEazy.Api.Model.ManageViewModels
             public string SharedKey { get; set; }
 
             [BindNever]
-            public string AuthenticatorUri { get; set; }
+            public Uri AuthenticatorUri { get; set; }
     }
     public class GenerateRecoveryCodesViewModel
     {

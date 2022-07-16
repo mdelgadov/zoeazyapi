@@ -6,30 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    public class Cuisine : IDeleted
+    public class Cuisine : Delete
     {
-        [Key]
-        public int Id { get; set; }
-        public int Branch_Id { get; set; }
-        [JsonIgnore][ForeignKey("Branch_Id")]
-        public virtual Branch Branch { get; set; }
-        public string Name { get; set; }
-        [DefaultValue(false)]
-        private bool _Deleted;
-        public bool? Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                if (value == null) value = false;
-                _Deleted = (bool)value;
-                if (_Deleted) DeletedUtc = DateTimeOffset.Now;
-            }
-        }
-        [JsonIgnore]
-        public DateTimeOffset DeletedUtc { get; set; }
+        public int BranchId { get; set; }
+        [JsonIgnore][ForeignKey("BranchId")]
+        public virtual Model.Branch.Branch Branch { get; set; }
     }
 }

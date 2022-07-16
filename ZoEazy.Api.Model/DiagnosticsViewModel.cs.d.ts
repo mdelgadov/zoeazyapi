@@ -1,4 +1,3 @@
-declare module server {
 	interface diagnosticsViewModel {
 		authenticateResult: {
 			succeeded: boolean;
@@ -72,4 +71,3 @@ declare module server {
 		};
 		clients: string[];
 	}
-}

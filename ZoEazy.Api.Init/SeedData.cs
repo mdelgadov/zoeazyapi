@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ZoEazy.Api.Model;
 using ZoEazy.Api.Data;
 using Microsoft.Extensions.Configuration;
+using ZoEazy.Api.Model.Subscriber;
 
 namespace ZoEazy.Api.Init
 {
@@ -104,16 +105,14 @@ namespace ZoEazy.Api.Init
                 var adminUser = new Subscriber
                 {
                     UserName = "mdelgadov@hotmail.com",
-                    FirstName = "Miguel",
-                    MiddleName = "Villar",
-                    LastName = "Delgado",
+                    Name = new HumanName("Miguel", "Villar","Delgado"),
                     Email = "mdelgadov@hotmail.com",
                     Mobile = "0123456789",
                     EmailConfirmed = true,
                     CreatedDate = DateTime.Now,
                     IsEnabled = true,
                     Suspended = new Flag(),
-                    DateOfBirth = new ZeDate(),
+                    DateOfBirth = new Date(),
                     IsAdmin = true,
                     Gender = Gender.Male
 
@@ -125,14 +124,13 @@ namespace ZoEazy.Api.Init
                 _userManager.AddToRoleAsync(_userManager.FindByNameAsync("mdelgadov@hotmail.com").GetAwaiter().GetResult(), "Admin").Result.ToString();
 
                 var normalUser = new Subscriber { UserName = "user@user.com",
-                    FirstName = "First", LastName = "Last",
+                    Name = new HumanName("First", "Middle", "Last"),
                     Email = "user@user.com", Mobile = "0123456789",
                     EmailConfirmed = true,
                     CreatedDate = DateTime.Now,
                     IsEnabled = true,
                     Suspended = new Flag(),
-                    DateOfBirth = new ZeDate(),
-                    MiddleName = "Pepone",
+                    DateOfBirth = new Date(),
                     IsAdmin = false,
                     Gender = Gender.Male
 

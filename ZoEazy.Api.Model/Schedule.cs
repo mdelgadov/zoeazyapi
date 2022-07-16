@@ -7,20 +7,17 @@ using System.Reflection;
 
 namespace ZoEazy.Api.Model
 {
-    public class Schedule : IDeleted, IId
+    public class Schedule : Delete
     {
-        public Schedule() {
-            Deleted = false;
-        }
+     
 
-        [Key]
-        public int Id { get; set; }
+       
         [Required]
-        public int Branch_Id { get; set; }
+        public int BranchId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("Branch_Id")]
-        public virtual Branch Branch { get; set; }
+        [ForeignKey("BranchId")]
+        public virtual Model.Branch.Branch Branch { get; set; }
 
         [DefaultValue(PredefinedDay.None)]
         private PredefinedDay _Dow;
@@ -62,23 +59,7 @@ namespace ZoEazy.Api.Model
         public string Name { get; set; }
         public Boolean? Disable { get; set; }
         public Boolean? Optional { get; set; }
-        [DefaultValue(false)]
-        private bool _Deleted;
-        public bool? Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                if (value == null) value = false;
-                _Deleted = (bool)value;
-                if (_Deleted) DeletedUtc = DateTimeOffset.Now;
-            }
-        }
-        [JsonIgnore]
-        public DateTimeOffset DeletedUtc { get; set; }
+        
     }
 }
 

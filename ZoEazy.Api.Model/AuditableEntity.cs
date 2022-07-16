@@ -1,17 +1,17 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    public class AuditableEntity : IAuditableEntity
+    public abstract class AuditableEntity : ClientChangeTracker, IAuditableEntity
     {
-        [Required]
-        public Guid UserId { get; set; }
-        [MaxLength(256)]
-        public string CreatedBy { get; set; }
-        [MaxLength(256)]
-        public string UpdatedBy { get; set; }
-        public DateTime UpdatedDate { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public AuditableEntity(Guid user)
+        {
+            Created = new Status(user);
+        }
+        public Status Created { get; set; }
+        public Status Updated { get; set; }
+        public Status Deleted { get; set; }
     }
 }

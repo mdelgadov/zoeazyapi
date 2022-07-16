@@ -21,11 +21,11 @@ namespace ZoEazy.Api.Model
         public string Name { get; set; }
 
         [Required]
-        public int Branch_Id { get; set; }
+        public int BranchId { get; set; }
         
 
-        [JsonIgnore][ForeignKey("Branch_Id")]
-        public virtual Branch Branch { get; set; }
+        [JsonIgnore][ForeignKey("BranchId")]
+        public virtual Model.Branch.Branch Branch { get; set; }
     }
 
     

@@ -22,7 +22,7 @@ namespace ZoEazy.Api.Model
         public Hour? ClosesHour { get; set; }
         public Quarter? ClosesMinute { get; set; }
         public Boolean? Disable { get; set; }
-        public Boolean? Optional { get; set; }
+        public Boolean? IsOptional { get; set; }
         public Boolean? CloseOfTheNextDay { get; set; }
     }
 }

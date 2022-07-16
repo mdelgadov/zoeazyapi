@@ -6,9 +6,9 @@ namespace ZoEazy.Api.Model.ManageViewModels
 {
     public class ExternalLoginsViewModel
     {
-        public IList<UserLoginInfo> CurrentLogins { get; set; }
+        public IEnumerable<UserLoginInfo> CurrentLogins { get; set; }
 
-        public IList<AuthenticationScheme> OtherLogins { get; set; }
+        public IEnumerable<AuthenticationScheme> OtherLogins { get; set; }
 
         public bool ShowRemoveButton { get; set; }
 

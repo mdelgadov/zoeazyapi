@@ -12,8 +12,8 @@ namespace ZoEazy.Api.Model
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Customer_Id { get; set; }
-        [JsonIgnore][ForeignKey("Customer_Id")]
+        public string CustomerId { get; set; }
+        [JsonIgnore][ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
 
         [Required]
@@ -31,9 +31,9 @@ namespace ZoEazy.Api.Model
         //[TsIgnore]
         // public DbGeography Position { get; set; }
 
-        public int? State_Id { get; set; }
+        public int StateId { get; set; }
 
-        [JsonIgnore][ForeignKey("State_Id")]
+        [JsonIgnore][ForeignKey("StateId")]
         public virtual State State { get; set; }
 
 

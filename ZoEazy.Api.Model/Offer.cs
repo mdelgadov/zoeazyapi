@@ -7,13 +7,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    public class Offer: IDeleted
+    public class Offer: Delete
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
         public string Description { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "Images are byte arrays")]
         public byte[] Image { get; set; }
         public string ImageSource { get; set; }
         public decimal Amount { get; set; }
@@ -21,33 +19,17 @@ namespace ZoEazy.Api.Model
         public Currency Currency { get; set; }
         public double? Percentage { get; set; }
         public float Sequence { get; set; }
-        public virtual List<OfferItem> Items { get; set; }
-        public int? OfferType_Id { get; set; }
+        public IEnumerable<OfferItem> Items { get; set; }
+        public int? OfferTypeId { get; set; }
         [JsonIgnore]
-        [ForeignKey("OfferType_Id")]
+        [ForeignKey("OfferTypeId")]
         public virtual OfferType OfferType { get; set; }
         [Required]
-        public int Branch_Id { get; set; }
+        public int BranchId { get; set; }
         [JsonIgnore]
-        [ForeignKey("Branch_Id")]
-        public virtual Branch Branch { get; set; }
-        [DefaultValue(false)]
-        private bool _Deleted;
-        public bool? Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                if (value == null) value = false;
-                _Deleted = (bool)value;
-                if (_Deleted) DeletedUtc = DateTimeOffset.Now;
-            }
-        }
-        [JsonIgnore]
-        public DateTimeOffset DeletedUtc { get; set; }
+        [ForeignKey("BranchId")]
+        public virtual Model.Branch.Branch Branch { get; set; }
+       
 
     }
 }

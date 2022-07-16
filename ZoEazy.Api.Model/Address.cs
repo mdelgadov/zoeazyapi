@@ -4,11 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    class Address : IAddress
+    public abstract class Address : Delete, IAddress 
     {
-
-        
-    [Required]
+        [Required]
         public string Street { get; set; }
         public string Apartment { get; set; }
         [Required]
@@ -20,14 +18,17 @@ namespace ZoEazy.Api.Model
         public double Latitude { get; set; }
         [JsonIgnore]
         public double Longitude { get; set; }
-        
 
-        public int? State_Id { get; set; }
+
+        public int StateId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("State_Id")]
-        public virtual State State { get; set; }
+        [ForeignKey("StateId")]
+        public State State { get; set; }
+
+        public string Geological { get; set; }
 
 
     }
+
 }

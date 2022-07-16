@@ -7,38 +7,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    public class OfferItem : IDish, IDeleted
+    public class OfferItem : Delete, IDish
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
         public string Description { get; set; }
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "Images are byte array")]
         public byte[] Image { get; set; }
         public string ImageSource { get; set; }
         public float Sequence { get; set; }
-        public List<OfferItemPresentation> OfferItemPresentations { get; set; }
+        public IEnumerable<OfferItemPresentation> OfferItemPresentations { get; set; }
         [Required]
-        public int Offer_Id { get; set; }
-        [JsonIgnore][ForeignKey("Offer_Id")]
-        public virtual Offer Offer { get; set; }
-        [DefaultValue(false)]
-        private bool _Deleted;
-        public bool? Deleted
-        {
-            get
-            {
-                return _Deleted;
-            }
-            set
-            {
-                if (value == null) value = false;
-                _Deleted = (bool)value;
-                if (_Deleted) DeletedUtc = DateTimeOffset.Now;
-            }
-        }
+        public int OfferId { get; set; }
         [JsonIgnore]
-        public DateTimeOffset DeletedUtc { get; set; }
+        [ForeignKey("OfferId")]
+        public virtual Offer Offer { get; set; }
+
     }
 }

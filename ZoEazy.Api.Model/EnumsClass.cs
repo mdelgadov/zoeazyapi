@@ -139,7 +139,7 @@ namespace ZoEazy.Api.Model
         }
         public static Indexed[] Suffixes()
         {
-            var type = typeof(Suffixes);
+            var type = typeof(Suffix);
             var data = Enum
                 .GetNames(type)
                 .Select(name => new Indexed

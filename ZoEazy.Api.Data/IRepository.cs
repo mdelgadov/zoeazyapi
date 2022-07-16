@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using ZoEazy.Api.Model;
+using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Data
 {

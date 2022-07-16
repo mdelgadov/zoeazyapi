@@ -5,25 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZoEazy.Api.Model
 {
-    public class MenuItem : IDish
+    public class MenuItem : Delete, IDish
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
-        public string Name { get; set; }
         public string Description { get; set; }
         public string Footnote { get; set; }
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1819:Properties should not return arrays", Justification = "Image is a byte array")]
         public byte[] Image { get; set; }
         public string ImageSource { get; set; }
         public float Sequence { get; set; }
-
-       public virtual List<MenuItemPresentation> Presentations { get; set; }
-
-
+        public IEnumerable<MenuItemPresentation> Presentations { get;  }
         [Required]
-        public int Menu_Id { get; set; }
-        [JsonIgnore][ForeignKey("Menu_Id")]
+        public int MenuId { get; set; }
+        [JsonIgnore]
+        [ForeignKey("MenuId")]
         public virtual Menu Menu { get; set; }
     }
 }

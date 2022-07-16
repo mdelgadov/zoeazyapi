@@ -3,9 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Model
 {
+    public interface IHumanName
+    {
+        string First { get; set; }
+        string Middle { get; set; }
+        string Last { get; set; }
+    }
+
     public interface IAddress
     {
 
@@ -24,10 +32,10 @@ namespace ZoEazy.Api.Model
         //[TsIgnore]
         // public DbGeography Position { get; set; }
 
-        int? State_Id { get; set; }
+        int StateId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("State_Id")]
+        [ForeignKey("StateId")]
         State State { get; set; }
 
 
@@ -37,35 +45,29 @@ namespace ZoEazy.Api.Model
     {
         [Required]
         BankAccountType BankAccountType { get; set; }
-
+        [Required]
         string Routing { get; set; }
-
+        [Required]
         string Account { get; set; }
 
     }
+
     public interface IConfig
     {
         double? Radius { get; set; }
+        
         double? Zoom { get; set; }
-        List<WebsiteName> Websites { get; set; }
+        IEnumerable<WebsiteName> Websites { get;  }
         InitialWebsiteState State { get; set; }
 
         Redirection Redirection { get; set; }
         string AppName { get; set; }
     }
-    public interface IContractItem
-    {
-        Plan Plan { get; set; }
-        int Plan_Id { get; set; }
-        Contract Contract { get; set; }
-        int Contract_Id { get; set; }
-        int Id { get; set; }
-    }
+
     public interface ICreditCard
     {
         string CCV { get; set; }
-        int ValidThruYear { get; set; }
-        int ValidThruMonth { get; set; }
+        ValidThru ValidThru { get; set; }
         CreditCardBrand Brand { get; set; }
         string Number { get; set; }
         string Name { get; set; }
@@ -74,8 +76,7 @@ namespace ZoEazy.Api.Model
     }
     public interface IDeleted
     {
-        bool? Deleted { get; set; }
-        DateTimeOffset DeletedUtc { get; set; }
+        Status Deleted { get; set; }
     }
     public interface IDish
     {
@@ -84,26 +85,27 @@ namespace ZoEazy.Api.Model
         string Name { get; set; }
         string Description { get; set; }
 
+#pragma warning disable CA1819 // Properties should not return arrays
         byte[] Image { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays
         string ImageSource { get; set; }
         float Sequence { get; set; }
 
     }
-    public interface IFax : IMetaPhone
-    {
-        [Key]
-        int Id { get; set; }
-    }
     public interface IHuman
     {
+        [Required]
+        HumanName Name { get; set; }
         Gender Gender { get; set; }
 
     }
     public interface IId
     {
+        [Key]
         int Id { get; set; }
+         
     }
-    public interface IInstitution
+    public interface IThing
     {
         [Required]
         string Name { get; set; }
@@ -111,13 +113,11 @@ namespace ZoEazy.Api.Model
     }
     public interface ILongHuman : IHuman
     {
-        [Required]
-        string FirstName { get; set; }
 
-        string MiddleName { get; set; }
-        [Required]
-        string LastName { get; set; }
+
+#pragma warning disable CA1819 // Properties should not return arrays
         byte[] Image { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays
         string ImageSource { get; set; }
 
     }
@@ -130,20 +130,20 @@ namespace ZoEazy.Api.Model
     {
         [Key]
         int Id { get; set; }
-        List<BranchOrderItem> Items { get; set; }
+        IEnumerable<Branch.Order.Item> Items { get;  }
 
         [Required]
-        int Branch_Id { get; set; }
+        int BranchId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("Branch_Id")]
-        Branch Branch { get; set; }
+        [ForeignKey("BranchId")]
+        Branch.Branch Branch { get; set; }
         [Required]
-        int SubscriberCreditCard_Id { get; set; }
+        int CreditCardId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("SubscriberCreditCard_Id")]
-        SubscriberCreditCard CreditCard { get; set; }
+        [ForeignKey("CreditCardId")]
+        CreditCard CreditCard { get; set; }
 
 
         bool Proposed { get; set; }
@@ -156,12 +156,15 @@ namespace ZoEazy.Api.Model
 
         string Stringify();
     }
-    public interface IPaymentMethod
+    interface ISubscriberDependent
     {
-        [Key]
-        int Id { get; set; }
+        Guid SubscriberId { get; set; }
+        Subscriber.Subscriber Subscriber { get; set; }
+    }
+    public interface IPaymentMethod 
+    {
         int Sequence { get; set; }
-        CreditCardStatus? Status { get; set; }
+        CreditCardStatus Status { get; set; }
     }
     public interface IPhone
     {
@@ -173,12 +176,12 @@ namespace ZoEazy.Api.Model
     }
     public interface IPredefinedOrderItem
     {
-        Branch Branch { get; set; }
-        int? Branch_Id { get; set; }
+        Branch.Branch Branch { get; set; }
+        int? BranchId { get; set; }
         decimal Charge { get; set; }
         string Concept { get; set; }
-        Franchise Franchise { get; set; }
-        int? Franchise_Id { get; set; }
+        Model.Franchise.Franchise Franchise { get; set; }
+        int? FranchiseId { get; set; }
         int Id { get; set; }
     }
     public interface IPredefinedSchedule
@@ -194,7 +197,7 @@ namespace ZoEazy.Api.Model
         Quarter? ClosesMinute { get; set; }
         string Name { get; set; }
         Boolean? Disable { get; set; }
-        Boolean? Optional { get; set; }
+        Boolean? IsOptional { get; set; }
         Boolean? CloseOfTheNextDay { get; set; }
     }
     public interface IPresentation
@@ -212,26 +215,20 @@ namespace ZoEazy.Api.Model
     public interface ISetupOrder : IOrder
     {
         [Required]
-        int Service_Id { get; set; }
+        int ServiceId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("Service_Id")]
+        [ForeignKey("ServiceId")]
         Service SetupService { get; set; }
     }
     public interface ISetupService
     {
         decimal SetupCharge { get; set; }
     }
-    public interface IShortHuman : IHuman
-    {
-        [Required]
-        string Name { get; set; }
-
-    }
     public interface IWebsiteName
     {
         [Required]
-        int Branch_Id { get; set; }
+        int BranchId { get; set; }
         string Suffix { get; set; }
         string Domain { get; set; }
     }

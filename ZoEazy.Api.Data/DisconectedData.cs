@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ZoEazy.Api.Model;
+using ZoEazy.Api.Model.Subscriber;
 
 namespace ZoEazy.Api.Data
 {
@@ -21,10 +22,9 @@ namespace ZoEazy.Api.Data
 
         public List<KeyValuePair<Guid, string>> GetUsersReferenceList()
         {
-            var users = _context.Users.OrderBy(s => s.LastName)
-              .Select(s => new { s.Id, s.LastName })
-              .ToDictionary(t => t.Id, t => t.LastName).ToList();
-            return users;
+            return _context.Users.OrderBy(s => s.Name.FullLastFirst)
+              .Select(s => new { s.Id, s.Name.FullLastFirst})
+              .ToDictionary(t => t.Id, t => t.FullLastFirst).ToList();
         }
 
 

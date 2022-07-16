@@ -53,7 +53,7 @@ namespace ZoEazy.Api.Model
         fourteen = 14,
         twentyone = 21
     }
-    public enum SetupDays { days = 5}
+    public enum SetupDay { days = 5}
     public enum Hour
     {
         h24, h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, h12, h13, h14, h15, h16, h17, h18, h19, h20, h21, h22, h23
@@ -69,7 +69,7 @@ namespace ZoEazy.Api.Model
     }
     public enum Month
     {
-        January,
+        January = 1,
         February,
         March,
         April,
@@ -83,7 +83,7 @@ namespace ZoEazy.Api.Model
         December
     }
     public enum Quarter { f0, f15 = 15, f30 = 30, f45 = 45 }
-    public enum ApplicationTypes
+    public enum ApplicationType
     {
         JavaScript,
         NativeConfidential
@@ -93,9 +93,9 @@ namespace ZoEazy.Api.Model
         Checking,
         Savings,
     }
-    public enum ConfigDefaults
+    public enum ConfigDefault
     {
-        Radius = 5, RadiusUnit = 1, Finds = 100, QtyTime = 90, Period = 0, Zoom = 14, Takes = 20, Locale_Id = 1, Currency_Id = 1
+        Radius = 5, RadiusUnit = Length.mile, Finds = 100, QtyTime = 90, Period = 0, Zoom = 14, Takes = 20, LocaleId = 1, CurrencyId = 1
     }
     public enum CreditCardEnum
     {
@@ -175,7 +175,7 @@ namespace ZoEazy.Api.Model
     {
         New, Previous, Inactive
     }
-    public enum Lengths { kilometer, mile }
+    public enum Length { kilometer = 1000, mile = 1609 }
     public enum LongPeriod
     {
         Month = 1,
@@ -226,7 +226,7 @@ namespace ZoEazy.Api.Model
     {
         Day, Week, Month
     }
-    public enum Suffixes
+    public enum Suffix
     {
         any,
         com,
@@ -241,7 +241,7 @@ namespace ZoEazy.Api.Model
     }
     public class CreditCardDict
     {
-        public Dictionary<int, string> Brands { get; set; }
+        public Dictionary<int, string> Brands { get;  }
 
         public CreditCardDict()
         {
@@ -252,7 +252,7 @@ namespace ZoEazy.Api.Model
     }
     public class MonthDict
     {
-        public Dictionary<int, string> Months { get; set; }
+        public Dictionary<int, string> Months { get;  }
 
         public MonthDict()
         {

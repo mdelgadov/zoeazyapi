@@ -10,9 +10,9 @@ namespace ZoEazy.Api.Model
         public Corner CornerFrom { get; set; }
         public Corner CornerTo { get; set; }
         [Required]
-        public int DeliveryArea_Id { get; set; }
+        public int DeliveryAreaId { get; set; }
         [JsonIgnore]
-        [ForeignKey("DeliveryArea_Id")]
+        [ForeignKey("DeliveryAreaId")]
         public virtual DeliveryArea DeliveryArea { get; set; }
     }
 }

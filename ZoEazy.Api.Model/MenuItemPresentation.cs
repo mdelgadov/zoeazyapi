@@ -11,9 +11,9 @@ namespace ZoEazy.Api.Model
         public string Size { get; set; }
 
         [Required]
-        public int MenuItem_Id { get; set; }
+        public int MenuItemId { get; set; }
         [JsonIgnore]
-        [ForeignKey("MenuItem_Id")]
+        [ForeignKey("MenuItemId")]
         public virtual MenuItem MenuItem { get; set; }
         [Required]
         public decimal Price { get; set; }

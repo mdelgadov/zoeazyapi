@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ZoEazy.Api.Model
 {
-    public class ContactUs : IEntityBase
+    public class ContactUs : IId
     {
         [Key]
         public int Id { get; set; }

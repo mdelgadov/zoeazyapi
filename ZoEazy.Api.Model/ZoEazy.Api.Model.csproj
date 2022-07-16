@@ -5,7 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="2.2.4" />
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Spatial" Version="7.6.2" />
+    <PackageReference Include="NetTopologySuite" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
@@ -14,6 +27,7 @@
     <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.4.0" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="2.4.0" />
     <PackageReference Include="Stripe.net" Version="27.3.1" />
+    <PackageReference Include="TypeGen" Version="2.4.2" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
   </ItemGroup>
 
@@ -106,12 +120,6 @@
       <LastGenOutput>GrantsViewModel.cs.d.ts</LastGenOutput>
       <Generator>DtsGenerator</Generator>
     </Compile>
-    <Compile Update="IAuditable.cs">
-      <Generator></Generator>
-    </Compile>
-    <Compile Update="IEntityBase.cs">
-      <Generator></Generator>
-    </Compile>
     <Compile Update="ManageViewModels\ChangePasswordViewModel.cs">
       <LastGenOutput>ChangePasswordViewModel.cs.d.ts</LastGenOutput>
       <Generator>DtsGenerator</Generator>
@@ -148,10 +156,15 @@
       <LastGenOutput>TwoFactorAuthenticationViewModel.cs.d.ts</LastGenOutput>
       <Generator>DtsGenerator</Generator>
     </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Update="StsConfig.cs">
       <Generator></Generator>
     </Compile>
-    <Compile Update="Subscriber.cs">
+    <Compile Update="Subscriber\Subscriber.cs">
       <Generator>DtsGenerator</Generator>
       <LastGenOutput>Subscriber.cs.d.ts</LastGenOutput>
     </Compile>
@@ -318,10 +331,22 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Subscriber.cs</DependentUpon>
     </None>
+    <None Update="Subscriber\Subscriber.cs.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Subscriber.cs</DependentUpon>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

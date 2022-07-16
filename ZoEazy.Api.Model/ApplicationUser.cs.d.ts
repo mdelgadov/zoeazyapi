@@ -1,14 +1,11 @@
-declare module server {
 	/** Add profile data for application users by adding properties to the ApplicationUser class */
 	interface applicationUser extends identityUser {
 		isEnabled: boolean;
 		createdDate: Date;
-		firstName: string;
-		lastName: string;
+		/** [StringLength(250)]public string FirstName { get; set; }[StringLength(250)]public string LastName { get; set; } */
 		mobile: string;
-		name: string;
+		/** [NotMapped]public string Name{get{return this.FirstName + " " + this.LastName;}} */
 		isAdmin: boolean;
 		dataEventRecordsRole: string;
 		securedFilesRole: string;
 	}
-}

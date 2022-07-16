@@ -1,20 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ZoEazy.Api.Model.Entities
 {
     public class EOrder : AuditableEntity
     {
-        public int Id { get; set; }
+        public EOrder(Guid user) : base(user)
+        {
+        }
+
         public decimal Discount { get; set; }
         public string Comments { get; set; }
 
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
-        public ICollection<EOrderDetail> EOrderDetails { get; set; }
+        public ICollection<EOrderDetail> EOrderDetails { get;  }
     }
-    public class EOrderDetail : AuditableEntity
+    public class EOrderDetail : Delete
     {
-        public int Id { get; set; }
+      
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
         public decimal Discount { get; set; }

@@ -15,6 +15,6 @@ namespace ZoEazy.Api.Model
         [Required]
         public string Abbreviation { get; set; }
 
-        public virtual List<State> States { get; set; }
+        public IEnumerable<State> States { get; set; }
     }
 }

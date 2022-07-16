@@ -14,10 +14,10 @@ namespace ZoEazy.Api.Model
         public string Language { get; set; }
         [Required]
 
-        public int Country_Id { get; set; }
+        public int CountryId { get; set; }
 
         [JsonIgnore]
-        [ForeignKey("Country_Id")]
+        [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
         public string CountryName { get; set; }
         public string LocaleString { get; set; }

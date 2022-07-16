@@ -10,8 +10,8 @@ namespace ZoEazy.Api.Model
         public int Id { get; set; }
         public string Size { get; set; }
 
-        public int Favorite_Id { get; set; }
-        [JsonIgnore][ForeignKey("Favorite_Id")]
+        public int FavoriteId { get; set; }
+        [JsonIgnore][ForeignKey("FavoriteId")]
         public virtual Favorite Favorite { get; set; }
         [Required]
         public decimal Price { get; set; }

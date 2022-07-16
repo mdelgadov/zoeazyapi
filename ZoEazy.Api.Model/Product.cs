@@ -2,10 +2,9 @@
 
 namespace ZoEazy.Api.Model
 {
-    public class Product : AuditableEntity
+    public class Product : Delete
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+       
         public string Description { get; set; }
         public string Icon { get; set; }
         public decimal BuyingPrice { get; set; }
@@ -19,7 +18,7 @@ namespace ZoEazy.Api.Model
         public int ProductCategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; }
 
-        public ICollection<Product> Children { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public ICollection<Product> Children { get;  }
+        public ICollection<OrderDetail> OrderDetails { get;  }
     }
 }

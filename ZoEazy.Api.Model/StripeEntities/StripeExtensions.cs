@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace ZoEazy.Api.Model.StripeEntities
         /// <returns></returns>
         public static Stripe.Card GetDefaultSource(this Stripe.Customer customer)
         {
+            Contract.Requires(customer != null);
+
             if (customer.DefaultSource != null)
                 return customer.GetDefaultSource();
 

@@ -9,8 +9,8 @@ namespace ZoEazy.Api.Model.ManageViewModels
 {
     public class ManageLoginsViewModel
     {
-        public IList<UserLoginInfo> CurrentLogins { get; set; }
+        public IEnumerable<UserLoginInfo> CurrentLogins { get; set; }
 
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
+        public IEnumerable<AuthenticationDescription> OtherLogins { get; set; }
     }
 }

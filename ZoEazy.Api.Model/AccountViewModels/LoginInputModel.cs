@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using System;
 namespace ZoEazy.Api.Model.AccountViewModels
 {
     public class LoginInputModel
@@ -12,6 +12,6 @@ namespace ZoEazy.Api.Model.AccountViewModels
         public string Password { get; set; }
 
         public bool RememberLogin { get; set; }
-        public string ReturnUrl { get; set; }
+        public Uri ReturnUrl { get; set; }
     }
 }

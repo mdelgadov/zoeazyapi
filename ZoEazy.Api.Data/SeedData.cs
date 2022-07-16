@@ -1,5 +1,4 @@
 ﻿using ZoEazy.Api.Model;
-
 using ZoEazy.Api.Model.Extensions;
 using ZoEazy.Api.Model.Entities;
 using Microsoft.AspNetCore.Hosting;
@@ -8,10 +7,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-
-
-
 
 namespace ZoEazy.Api.Data
 {
@@ -98,9 +93,7 @@ namespace ZoEazy.Api.Data
                         Address = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
                     Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet",
                         City = "Lorem Ipsum " + i,
-                        Gender = i % 2 == 0 ? Gender.Male : Gender.Female,
-                        UpdatedDate = DateTime.UtcNow,
-                        CreatedDate = DateTime.UtcNow
+                        Gender = i % 2 == 0 ? Gender.Male : Gender.Female
                     });
                 }
 
@@ -114,9 +107,7 @@ namespace ZoEazy.Api.Data
                     _context.ProductCategories.Add(new ProductCategory
                     {
                         Name = "Category " + i,
-                        Description = "Category description " + i,
-                        UpdatedDate = DateTime.UtcNow,
-                        CreatedDate = DateTime.UtcNow
+                        Description = "Category description " + i
                     });
                 }
 
@@ -135,9 +126,7 @@ namespace ZoEazy.Api.Data
                         SellingPrice = 110 + i,
                         UnitsInStock = 10 + i,
                         IsActive = true,
-                        ProductCategoryId = new Random().Next(1, 11),
-                        CreatedDate = DateTime.UtcNow,
-                        UpdatedDate = DateTime.UtcNow
+                        ProductCategoryId = new Random().Next(1, 11)
                     });
                 }
 
@@ -154,8 +143,6 @@ namespace ZoEazy.Api.Data
                         Discount = 500 + 1m,
                         Comments = i + " Lorem ipsum is just a dummy text e.g the quick brown fox jumps over the lazy dog.",
                         CustomerId = customer.Id,
-                        CreatedDate = DateTime.UtcNow,
-                        UpdatedDate = DateTime.UtcNow,
                         EOrderDetails = null
                     });
                 }

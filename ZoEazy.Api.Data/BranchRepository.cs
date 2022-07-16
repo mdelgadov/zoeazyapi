@@ -1,4 +1,4 @@
-﻿using ZoEazy.Api.Model;
+﻿using ZoEazy.Api.Model.Branch;
 
 namespace ZoEazy.Api.Data
 {

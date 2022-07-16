@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace ZoEazy.Api.Model
 {
-  public class ClientChangeTracker : INotifyPropertyChanged {
+  public abstract class ClientChangeTracker : Ider, INotifyPropertyChanged {
     private bool _isDirty;
 
     public bool IsDirty {
